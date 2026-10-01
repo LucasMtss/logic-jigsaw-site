@@ -29,11 +29,7 @@ const playSteps = [
 const questions = [
   {
     q: "Por que o APK, e não a loja?",
-    a: "O Logic Jigsaw ainda não está na Google Play nem na App Store. As lojas aparecem nesta página como “Em breve”. Até lá, o botão de download entrega o APK da última build Android publicada.",
-  },
-  {
-    q: "O link muda sozinho quando sai uma versão nova?",
-    a: "Sim, quando o site está ligado à conta do Expo. Cada acesso ao botão consulta a build Android mais recente do perfil de prévia e baixa esse APK. Não é preciso trocar o endereço do site.",
+    a: "O Logic Jigsaw ainda não está na Google Play nem na App Store. As lojas aparecem nesta página como “Em breve”. Até lá, o botão de download entrega o APK da versão mais recente do jogo.",
   },
   {
     q: "Precisa criar conta para jogar?",

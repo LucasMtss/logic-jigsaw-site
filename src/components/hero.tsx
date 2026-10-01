@@ -57,9 +57,6 @@ export function Hero({ apk }: { apk: LatestApk | null }) {
                 <AndroidMark />
                 <span>
                   <span className="block text-lg leading-none">Baixar APK para Android</span>
-                  <span className="mt-1 block text-sm font-bold text-brand-deep/80">
-                    Download direto da última build{version ? ` · ${version}` : ""}
-                  </span>
                 </span>
               </a>
             ) : (
