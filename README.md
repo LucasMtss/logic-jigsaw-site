@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Logic Jigsaw — landing page
 
-## Getting Started
+Site em Next.js para apresentar o jogo e oferecer o APK de Android. Google Play e App Store ficam como “Em breve”.
 
-First, run the development server:
+O botão **Baixar APK para Android** aponta para `/download`. Essa rota consulta a API do Expo e redireciona para o APK da build Android mais recente. O endereço do site não precisa mudar a cada build.
+
+## Como o APK é escolhido
+
+1. Com `EXPO_TOKEN` na Vercel, o servidor busca a última build Android **finished** do perfil `preview` (o perfil que gera APK em `eas.json`).
+2. Se essa build não tiver um `.apk`, entra a última build Android pronta que também seja APK, exceto o perfil `development`.
+3. Sem token, ou se o Expo não responder, vale `APK_DOWNLOAD_URL` (HTTPS).
+4. Sem URL, o site usa o arquivo `public/logic-jigsaw.apk`, se ele existir no deploy.
+
+O perfil `production` gera AAB para a Play Store. Esse arquivo não é oferecido no botão, porque o Android não instala AAB direto.
+
+A consulta fica em cache por cerca de 5 minutos.
+
+## Publicar na Vercel
+
+1. Importe este repositório em [vercel.com/new](https://vercel.com/new).
+2. Crie um token em [expo.dev](https://expo.dev) → conta → Settings → Access tokens.
+3. Em Settings → Environment Variables, defina `EXPO_TOKEN`.
+4. Gere uma build instalável no app:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx eas-cli build -p android --profile preview
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Depois que a build termina, o botão do site passa a baixar esse APK. Não é preciso alterar a landing page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Desenvolvimento
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Copie `.env.example` para `.env.local` e preencha `EXPO_TOKEN` para testar o download automático.

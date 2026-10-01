@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: #117a4c;
+  --color-brand-bright: #1aaa68;
+  --color-brand-deep: #0c5c38;
+  --color-sun: #ffd84a;
+  --color-cream: #f6f1e7;
+  --color-ink: #1b2430;
+  --color-muted: #5d6b76;
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-baloo);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #ffd84a;
+  color: #143022;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .float-piece {
+    animation: none;
+  }
+}
+
+@keyframes float-piece {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--piece-rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--piece-rotate, 0deg));
+  }
+}
+
+.float-piece {
+  animation: float-piece 7s ease-in-out infinite;
+}
+
+.screen-rail {
+  scrollbar-width: none;
+}
+
+.screen-rail::-webkit-scrollbar {
+  display: none;
 }
