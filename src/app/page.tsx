@@ -128,7 +128,12 @@ export default async function HomePage() {
         </section>
       </main>
       <footer className="bg-brand-deep px-4 py-6 text-center text-sm font-bold text-white/80">
-        Logic Jigsaw · tabuleiro 8×8 · {new Date().getFullYear()}
+        <p>Logic Jigsaw · tabuleiro 8×8 · {new Date().getFullYear()}</p>
+        <p className="mt-2">
+          <a href="/privacidade" className="underline">
+            Política de privacidade
+          </a>
+        </p>
       </footer>
     </>
   );
