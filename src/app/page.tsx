@@ -133,6 +133,10 @@ export default async function HomePage() {
           <a href="/privacidade" className="underline">
             Política de privacidade
           </a>
+          {" · "}
+          <a href="/exclusao" className="underline">
+            Exclusão de conta
+          </a>
         </p>
       </footer>
     </>

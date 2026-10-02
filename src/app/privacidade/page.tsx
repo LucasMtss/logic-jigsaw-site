@@ -139,7 +139,11 @@ export default function PrivacyPage() {
               Pela Lei Geral de Proteção de Dados, você pode pedir confirmação do tratamento, acesso, correção, exclusão, informação sobre compartilhamento e revogação do consentimento, quando ele for a base do tratamento. Também pode apresentar reclamação à Autoridade Nacional de Proteção de Dados.
             </p>
             <p>
-              Para excluir a conta e os dados na nuvem (apelido, progresso sincronizado, preferências e o vínculo da compra no jogo), envie um pedido pelo contato desta página usando o e-mail da conta. Os recordes que estão só no aparelho saem em Ajustes, “Apagar recordes deste aparelho”, ou quando o app é desinstalado.
+              Para excluir a conta e os dados na nuvem (apelido, progresso sincronizado, preferências e o vínculo da compra no jogo), siga o passo a passo em{" "}
+              <Link className="font-extrabold text-brand underline" href="/exclusao">
+                Exclusão de conta
+              </Link>
+              . Os recordes que estão só no aparelho saem em Ajustes, “Apagar recordes deste aparelho”, ou quando o app é desinstalado.
             </p>
           </Section>
 
@@ -178,7 +182,15 @@ export default function PrivacyPage() {
           Logic Jigsaw
         </Link>
         {" · "}
-        Política de privacidade · {updated}
+        <Link href="/privacidade" className="underline">
+          Política de privacidade
+        </Link>
+        {" · "}
+        <Link href="/exclusao" className="underline">
+          Exclusão de conta
+        </Link>
+        {" · "}
+        {updated}
       </footer>
     </>
   );
